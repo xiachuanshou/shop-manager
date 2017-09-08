@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	"
+	default-autowire="byName">
+	<!--dataSource-->
+	<bean id="xlSqlSessionFactoryShop" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="shopDataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath*:com/xialiu/**/dao/shop/mapper/*.xml</value>
+			</list>
+		</property>
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+							<!-- 设置为true时，如果pageSize=0或者RowBounds.limit = 0就会查询出全部的结果 -->
+							<!-- （相当于没有执行分页查询，但是返回结果仍然是Page类型）-->
+							pageSizeZero=true
+							<!-- 该参数默认为false -->
+							<!-- 设置为true时，使用RowBounds分页会进行count查询 -->
+							rowBoundsWithCount=false
+							<!-- 该参数默认为false -->
+							<!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
+							<!-- 和startPage中的pageNum效果一样-->
+							offsetAsPageNum=false
+							<!-- 3.3.0版本可用 - 分页参数合理化，默认false禁用 -->
+							<!-- 启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
+							<!-- 禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据 -->
+							reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+	<bean id="sqlSessionShop" name="sqlSessionShop" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="xlSqlSessionFactoryShop" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--指定接口所在的包-->
+		<property name="basePackage" value="com.xialiu.**.dao.shop.mapper" />
+		<property name="sqlSessionFactoryBeanName" value="xlSqlSessionFactoryShop" />
+	</bean>
+</beans>
