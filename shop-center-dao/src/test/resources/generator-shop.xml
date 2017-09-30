@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+ <context id="MSTables" targetRuntime="MyBatis3" defaultModelType="flat">
+  
+  <property name="autoDelimitKeywords" value="true" />
+  <property name="beginningDelimiter" value="`"/>
+  <property name="endingDelimiter" value="`"/> 
+  <property name="javaFileEncoding" value="utf-8"/>
+  <plugin type="org.mybatis.generator.plugins.SerializablePlugin" /> 
+  <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+  <commentGenerator>
+   <property name="suppressAllComments" value="true" />
+  </commentGenerator>
+  
+  <jdbcConnection  driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/xialiu_shop" userId="root" password="xiaxing"/>
+
+  <javaTypeResolver >
+   <property name="forceBigDecimals" value="false" />
+  </javaTypeResolver>
+  
+  <javaModelGenerator targetPackage="com.xialiu.shop.center.dao.user.entity" targetProject="src/main/java">
+   <property name="enableSubPackages" value="true" />
+   <property name="trimStrings" value="true" />
+  </javaModelGenerator>
+  <sqlMapGenerator targetPackage="com.xialiu.shop.center.dao.user.mapper"  targetProject="src/main/java">
+   <property name="enableSubPackages" value="true" />
+  </sqlMapGenerator>
+  <javaClientGenerator type="XMLMAPPER" targetPackage="com.xialiu.shop.center.dao.user.mapper"  targetProject="src/main/java">
+   <property name="enableSubPackages" value="true" />
+  </javaClientGenerator>
+   
+   <table tableName="sp_user" domainObjectName="SpUser" enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">
+	   <property name="useActualColumnNames" value="false" />
+	   <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+   </table> 
+
+ </context>
+  
+</generatorConfiguration>

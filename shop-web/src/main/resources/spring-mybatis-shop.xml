@@ -12,7 +12,7 @@
 		<property name="dataSource" ref="shopDataSource" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath*:com/xialiu/**/dao/shop/mapper/*.xml</value>
+				<value>classpath*:com/xialiu/**/dao/user/mapper/*.xml</value>
 			</list>
 		</property>
 		<property name="plugins">
@@ -46,7 +46,7 @@
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!--指定接口所在的包-->
-		<property name="basePackage" value="com.xialiu.**.dao.shop.mapper" />
+		<property name="basePackage" value="com.xialiu.**.dao.user.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="xlSqlSessionFactoryShop" />
 	</bean>
 </beans>

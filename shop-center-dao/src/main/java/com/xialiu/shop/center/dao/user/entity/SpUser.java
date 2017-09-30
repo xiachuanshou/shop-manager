@@ -1,14 +1,9 @@
-package com.xialiu.shop.user.dto;
+package com.xialiu.shop.center.dao.user.entity;
 
 import java.io.Serializable;
 
-public class UserDto implements Serializable{
-	 /**
-	 * 
-	 */
-	private static final long serialVersionUID = -7077731456919508819L;
-
-	private Integer id;
+public class SpUser implements Serializable {
+    private Integer id;
 
     private String name;
 
@@ -19,6 +14,8 @@ public class UserDto implements Serializable{
     private String email;
 
     private String address;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;
